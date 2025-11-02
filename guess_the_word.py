@@ -11,9 +11,11 @@ Continue until the user guesses the word or runs out of attempts.
 Display a congratulatory message when the word is guessed.
 """
 
+# Import Modules
 import os
 import time
 import random
+
 
 # Function to clear the console screen
 def clear_console():
@@ -49,7 +51,23 @@ disney_movies = [
 
 def play_game():
     random_movie = random.choice(disney_movies)
+    letter_list = list(random_movie)
+    print("Guess the name of the Disney movie!\n")
+    print(f"The name of this movie has {len(random_movie)} letters.\n")
+    
+    word_completion = 0
+    while word_completion != len(random_movie):
+        letter_guessed = input("Enter the letter you would like to guess:")
+        # It letter is in word, display letters completed and add count to workd completion
+
+        # If lettet is not there, prompt user to try agai
+
+
+
     print(random_movie)
+    print(letter_list)
+    
+
 
 
 # Method to display the main menu and allow user to navigate system functions
