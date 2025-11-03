@@ -73,5 +73,4 @@ def play_game():
     print("Congratulations! You won!")
     print(f"The movie name of the movie is {movie}!")
     
-
 play_game()
