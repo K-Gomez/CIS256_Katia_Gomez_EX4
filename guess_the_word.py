@@ -48,22 +48,27 @@ disney_movies = [
     "Onward"
     ]
 
-
+# Function to initialize game 
 def play_game():
+    # Random selection of movie
     movie = random.choice(disney_movies)
     random_movie = movie.lower()
     
+    # Separate word into letters and count letters
     letter_list = list(random_movie)
     word_length = len(random_movie)
-                
+   
+    # Initialize counters    
     word_completion = 0
     guessed_letters = set()
 
+    # Loop to keep user guessing letters until word is complete
     while word_completion != word_length:
-        
+        # Instructions to user
         print("Guess the name of the Disney movie!\n")
-        print(f"The name of this movie has {len(random_movie)} letters.\n")
+        print(f"The name of this movie has {word_length} letters.\n")
 
+        # Loop to display word based on correct guesses and missing letters
         display_word = ""
         for letter in random_movie:
             if letter == " ":
@@ -74,29 +79,34 @@ def play_game():
             else:
                 display_word += "_"
         print("Current word: ", display_word)
-            
+        
+        # Display lsit of letters already used in alphabetical order
         print("Letters Used: ")   
         print(sorted(guessed_letters))
+
+        # Request user input - user to guess letter
         guess = input("Enter the letter you would like to guess: ")       
         letter_guessed = guess.lower()
        
+        # Test if letter has already been guessed
         if letter_guessed in guessed_letters:
             print("You already guessed that letter!\n")
             clear_console()
         
-        # It letter is in word, display letters completed and add count to word completion
+        # If user guess is in the word, add count to word completion
         if letter_guessed in letter_list:
             print("Correct!")
             guessed_letters.add(letter_guessed)
             word_completion = word_completion + random_movie.count(letter_guessed)
             clear_console()
                      
-        # If letter is not there, prompt user to try again
+        # If letter is not in the word, prompt user to try again
         else:
             print("Try again!")
             guessed_letters.add(letter_guessed)
             clear_console()
-
+    
+    # Congratulate user for winning
     print("Congratulations! You won!")
     print(f"The movie name of the movie is {movie}!")  
 
@@ -135,7 +145,7 @@ def main_menu():
             print("Thank you for visiting! Goodbye!")
             time.sleep(1)  # Pause for 1 second before exit
             clear_console()
-            break # If user enters "4" loop breaks and ends program
+            break # If user enters "2" loop breaks and ends program
         else:
             print("Please enter a valid selection. ")  # Handle invalid inputs
             time.sleep(1)  # Pause briefly before reloading menu
