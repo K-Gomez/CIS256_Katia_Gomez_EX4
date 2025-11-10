@@ -1,4 +1,6 @@
 import random
+from guess_the_word import disney_movies
+import pytest
 
 disney_movies = [
     "Bambi",
@@ -22,55 +24,28 @@ disney_movies = [
     ]
 
 
-def play_game():
-    movie = random.choice(disney_movies)
-    random_movie = movie.lower()
-    letter_list = list(random_movie)
-    word_length = len(random_movie)
+def test_random_word_selection():
+    chosen_word = random.choice(disney_movies)
+    assert chosen_word in disney_movies
 
-    print("Guess the name of the Disney movie!\n")
-    print(f"The name of this movie has {len(random_movie)} letters.\n")
-
-    print(random_movie)
-    print(letter_list)
-    
-    word_completion = 0
-    guessed_letters = set()
-
-    while word_completion != word_length:
-        display_word = ""
-        for letter in random_movie:
-            if letter == " ":
-                display_word += " "
-
-            elif letter in guessed_letters:
-                display_word += letter
-            else:
-                display_word += "_"
-        print("Current word: ", display_word)
-            
-        print("Letters Used: ")   
-        print(guessed_letters)
-        guess = input("Enter the letter you would like to guess: ")       
-        letter_guessed = guess.lower()
-       
-
-        if letter_guessed in guessed_letters:
-            print("You already guessed that letter!\n")
-        
-        # It letter is in word, display letters completed and add count to word completion
-        if letter_guessed in letter_list:
-            print("Correct!")
-            guessed_letters.add(letter_guessed)
-            word_completion = word_completion + random_movie.count(letter_guessed)
-                     
-        # If letter is not there, prompt user to try again
+def test_correct_quess_processing():
+    word = "brave"
+    guessed_letters = {"b"}
+    display_word = ""
+    for letter in word:
+        if letter in guessed_letters:
+            display_word += letter
         else:
-            print("Try again!")
-            guessed_letters.add(letter_guessed)
+            display_word += "_"
+    assert display_word == "b____"
 
-
-    print("Congratulations! You won!")
-    print(f"The movie name of the movie is {movie}!")
-    
-play_game()
+def test_incorrect_guess_processing():
+    word = "brave"
+    guessed_letters = {"z"}
+    display_word = ""
+    for letter in word:
+        if letter in guessed_letters:
+            display_word += letter
+        else:
+            display_word += "_"
+    assert display_word == "_____"

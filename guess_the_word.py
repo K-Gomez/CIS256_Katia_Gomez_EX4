@@ -14,8 +14,8 @@ Display a congratulatory message when the word is guessed.
 # Import Modules
 import os
 import time
-import random
-
+import random   
+import pytest
 
 # Function to clear the console screen
 def clear_console():
@@ -76,6 +76,7 @@ def play_game():
 
             elif letter in guessed_letters:
                 display_word += letter
+
             else:
                 display_word += "_"
         print("Current word: ", display_word)
@@ -90,20 +91,23 @@ def play_game():
        
         # Test if letter has already been guessed
         if letter_guessed in guessed_letters:
-            print("You already guessed that letter!\n")
+            print("\nYou already guessed that letter!\n")
+            time.sleep(1)
             clear_console()
         
         # If user guess is in the word, add count to word completion
-        if letter_guessed in letter_list:
-            print("Correct!")
+        elif letter_guessed in letter_list:
+            print("\nCorrect!")
             guessed_letters.add(letter_guessed)
             word_completion = word_completion + random_movie.count(letter_guessed)
-            clear_console()
+            time.sleep(1)
+            clear_console()    
                      
         # If letter is not in the word, prompt user to try again
         else:
-            print("Try again!")
+            print("\nTry again!")
             guessed_letters.add(letter_guessed)
+            time.sleep(1)
             clear_console()
     
     # Congratulate user for winning
@@ -142,20 +146,21 @@ def main_menu():
             input("\nPress Enter to return to the main menu...")
 
         elif selection == '2':
-            print("Thank you for visiting! Goodbye!")
+            print("\nThank you for visiting! Goodbye!")
             time.sleep(1)  # Pause for 1 second before exit
             clear_console()
             break # If user enters "2" loop breaks and ends program
         else:
-            print("Please enter a valid selection. ")  # Handle invalid inputs
+            print("\nPlease enter a valid selection. ")  # Handle invalid inputs
             time.sleep(1)  # Pause briefly before reloading menu
 
 
 
 # Main Program Execution
 
-# Clear screen before starting program
-clear_console()  
+if __name__ == "__main__":
+    # Clear screen before starting program
+    clear_console()  
 
-# Call the main menu function to start the program
-main_menu()
+    # Call the main menu function to start the program
+    main_menu()
