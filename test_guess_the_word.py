@@ -1,28 +1,15 @@
+# Katia Gomez
+# CIS256 Fall 2025
+# EX 4 - Test File
+
 import random
 from guess_the_word import disney_movies
 import pytest
 
-disney_movies = [
-    "Bambi",
-    "Dumbo",
-    "Aladdin",
-    "Mulan",
-    "Hercules",
-    "Cinderella",
-    "Brave",
-    "Up",
-    "Pinocchio",
-    "Fantasia",
-    "Atlantis",
-    "Pocahontas",
-    "Flubber",
-    "Tarzan",
-    "Fantasia",
-    "Dinosaur",
-    "Moana",
-    "Onward"
-    ]
-
+"""
+Test file for guess_the_word.py
+Tests random word selection and letter guessing logic
+"""
 
 def test_random_word_selection():
     chosen_word = random.choice(disney_movies)

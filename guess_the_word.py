@@ -1,6 +1,6 @@
 # Katia Gomez
 # CIS256 Fall 2025
-# EX 3.2
+# EX 4
 
 """
 Implement the game with the following features:
